@@ -75,6 +75,7 @@ tasks {
 
     val dockerBuildImage by creating(DockerBuildImage::class) {
         dependsOn(unpackFatJar)
+        tag = "hellorest"
         inputDir = projectDir
     }
 
@@ -105,8 +106,12 @@ tasks {
     val systemTest by creating(Test::class) {
         include("**/*ST.*")
 
-        dependsOn(dockerWaitHealthy)
+        dependsOn(dockerStartContainer,dockerWaitHealthy)
         finalizedBy(dockerStopContainer)
+    }
+
+    "check" {
+        dependsOn("systemTest")
     }
 }
 

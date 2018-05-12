@@ -5,7 +5,7 @@ EXPOSE 8080
 
 ENTRYPOINT java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -cp /app/ org.springframework.boot.loader.JarLauncher
 
-HEALTHCHECK CMD /opt/bin/health.sh
+HEALTHCHECK --interval=10s CMD /opt/bin/health.sh
 
 ADD src/main/scripts/health.sh /opt/bin/
 
