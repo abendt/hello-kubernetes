@@ -17,3 +17,6 @@ https://blog.hasura.io/sharing-a-local-registry-for-minikube-37c7240d0615
 https://github.com/magic7s/terraform_aws_spot_instance
 
 https://itnext.io/getting-started-with-kubernetes-using-ansible-and-terraform-741e6bb6ad7a
+
+Spring Boot Docker Image:
+https://github.com/orzeh/spring-boot-gradle-docker-sample
