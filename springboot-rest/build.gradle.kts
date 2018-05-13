@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import com.bmuschko.gradle.docker.DockerRegistryCredentials
 import com.bmuschko.gradle.docker.tasks.container.DockerCreateContainer
 import com.bmuschko.gradle.docker.tasks.container.DockerStartContainer
 import com.bmuschko.gradle.docker.tasks.container.DockerStopContainer
@@ -7,7 +6,6 @@ import com.bmuschko.gradle.docker.tasks.container.extras.DockerWaitHealthyContai
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
-import sun.tools.jar.resources.jar
 
 buildscript {
     repositories {
