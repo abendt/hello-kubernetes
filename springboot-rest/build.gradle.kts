@@ -23,8 +23,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("com.bmuschko.docker-remote-api") version "3.2.8"
 
-    id("com.garyclayburg.dockerprepare") version "1.3.1"
-
+    id("com.garyclayburg.dockerprepare") version "1.3.2"
 }
 
 repositories {
@@ -60,9 +59,8 @@ tasks {
         }
     }
 
-    val bootJar by getting(BootJar::class)
-
     val dockerBuildImage by creating(DockerBuildImage::class) {
+        dependsOn("dockerLayerPrepare")
         remove = true
         tag = "hellorest"
         inputDir = file("$buildDir/docker")
@@ -95,20 +93,11 @@ tasks {
     val systemTest by creating(Test::class) {
         include("**/*ST.*")
 
-        dependsOn(dockerStartContainer,dockerWaitHealthy)
+        dependsOn(dockerStartContainer, dockerWaitHealthy)
         finalizedBy(dockerStopContainer)
     }
 
     "check" {
         dependsOn("systemTest")
-    }
-}
-
-fun restoreLastModifiedDate(copyDetails: List<FileCopyDetails>, dir: File) {
-    copyDetails.forEach { details ->
-        val target = File(dir, details.path)
-        if (target.exists()) {
-            target.setLastModified(details.lastModified)
-        }
     }
 }
