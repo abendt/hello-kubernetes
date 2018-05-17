@@ -29,7 +29,7 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "geerlingguy/ubuntu1604"
-  config.vm.network "private_network", type: "dhcp"
+  config.vm.network "private_network", ip: "172.28.128.3"
   config.vm.provision "docker"
   config.vm.provision "shell", inline: $script
 end
